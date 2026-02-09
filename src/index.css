@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #141414;
+  --color-bg-card: #1a1a1a;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1a1;
+  --color-border: #262626;
+  --color-accent: #22c55e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,18 @@
+export const countryCodes = [
+    { code: 'GB', dial_code: '+44', flag: '🇬🇧', name: 'United Kingdom', flagUrl: 'https://flagcdn.com/w40/gb.png' },
+    { code: 'US', dial_code: '+1', flag: '🇺🇸', name: 'United States', flagUrl: 'https://flagcdn.com/w40/us.png' },
+    { code: 'BD', dial_code: '+880', flag: '🇧🇩', name: 'Bangladesh', flagUrl: 'https://flagcdn.com/w40/bd.png' },
+    { code: 'IN', dial_code: '+91', flag: '🇮🇳', name: 'India', flagUrl: 'https://flagcdn.com/w40/in.png' },
+    { code: 'CA', dial_code: '+1', flag: '🇨🇦', name: 'Canada', flagUrl: 'https://flagcdn.com/w40/ca.png' },
+    { code: 'AU', dial_code: '+61', flag: '🇦🇺', name: 'Australia', flagUrl: 'https://flagcdn.com/w40/au.png' },
+    { code: 'DE', dial_code: '+49', flag: '🇩🇪', name: 'Germany', flagUrl: 'https://flagcdn.com/w40/de.png' },
+    { code: 'FR', dial_code: '+33', flag: '🇫🇷', name: 'France', flagUrl: 'https://flagcdn.com/w40/fr.png' },
+    { code: 'JP', dial_code: '+81', flag: '🇯🇵', name: 'Japan', flagUrl: 'https://flagcdn.com/w40/jp.png' },
+    { code: 'CN', dial_code: '+86', flag: '🇨🇳', name: 'China', flagUrl: 'https://flagcdn.com/w40/cn.png' },
+    { code: 'BR', dial_code: '+55', flag: '🇧🇷', name: 'Brazil', flagUrl: 'https://flagcdn.com/w40/br.png' },
+    { code: 'RU', dial_code: '+7', flag: '🇷🇺', name: 'Russia', flagUrl: 'https://flagcdn.com/w40/ru.png' },
+    { code: 'IT', dial_code: '+39', flag: '🇮🇹', name: 'Italy', flagUrl: 'https://flagcdn.com/w40/it.png' },
+    { code: 'ES', dial_code: '+34', flag: '🇪🇸', name: 'Spain', flagUrl: 'https://flagcdn.com/w40/es.png' },
+    { code: 'AE', dial_code: '+971', flag: '🇦🇪', name: 'UAE', flagUrl: 'https://flagcdn.com/w40/ae.png' },
+    { code: 'SA', dial_code: '+966', flag: '🇸🇦', name: 'Saudi Arabia', flagUrl: 'https://flagcdn.com/w40/sa.png' },
+];
