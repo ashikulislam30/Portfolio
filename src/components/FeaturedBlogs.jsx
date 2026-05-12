@@ -1,47 +1,32 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import cpBlogImg from '../assets/cpblog.png';
+import aimlImg from '../assets/AI-ML.png';
 
 const blogs = [
   {
+    id: 0,
+    title: 'C and C++ for Competitive Programming',
+    description: 'Master the fundamentals of C and C++ and learn why they are the preferred languages for top competitive programmers worldwide.',
+    image: cpBlogImg,
+    tags: ['C++', 'Competitive Programming', 'Algorithms', 'STL'],
+    date: 'May 11, 2026',
+    url: '/blog/cp-mastery',
+  },
+  {
     id: 1,
-    title: 'Next.js 15/16 Data Fetching: Mistakes & Security Issues',
-    description: 'Common pitfalls and security vulnerabilities when fetching data in Next.js 15/16, including server components and API routes.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=320&fit=crop',
-    tags: ['frontend', 'development', 'nextjs', 'security'],
-    date: 'January 30, 2026',
-    url: '#',
-  },
-  {
-    id: 2,
-    title: 'Next.js 15/16 Routing Guide 2026',
-    description: 'A comprehensive guide to the App Router, dynamic routes, and best practices for routing in Next.js 15 and 16.',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=320&fit=crop',
-    tags: ['frontend', 'development', 'nextjs'],
-    date: 'December 12, 2025',
-    url: '#',
-  },
-  {
-    id: 3,
-    title: 'Building Scalable APIs with NestJS',
-    description: 'Best practices for designing and implementing scalable REST and GraphQL APIs using NestJS framework.',
-    image: 'https://images.unsplash.com/photo-1516110833967-0b5716ca1387?w=600&h=320&fit=crop',
-    tags: ['backend', 'nestjs', 'api'],
-    date: 'November 20, 2025',
-    url: '#',
-  },
-  {
-    id: 4,
-    title: 'TypeScript Tips for React Developers',
-    description: 'Essential TypeScript patterns and tips to write cleaner, type-safe React components and hooks.',
-    image: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=600&h=320&fit=crop',
-    tags: ['typescript', 'react', 'frontend'],
-    date: 'October 15, 2025',
-    url: '#',
+    title: 'Beginner’s Guide to AI and Machine Learning',
+    description: 'A complete beginner-friendly roadmap for learning Artificial Intelligence and Machine Learning from scratch.',
+    image: aimlImg,
+    tags: ['AI', 'Machine Learning', 'Python', 'Roadmap'],
+    date: 'May 12, 2026',
+    url: '/blog/ai-ml-guide',
   },
 ];
 
-export default function FeaturedBlogs() {
-  const [showAll, setShowAll] = useState(false);
+export default function FeaturedBlogs({ isFullPage = false }) {
+  const [showAll, setShowAll] = useState(isFullPage);
   const displayedBlogs = showAll ? blogs : blogs.slice(0, 2);
   return (
     <section id="blogs" className="py-24 px-6">
@@ -52,8 +37,8 @@ export default function FeaturedBlogs() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="text-white/50 text-sm uppercase tracking-wider mb-1">Featured</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Blogs</h2>
+          <p className="text-text-secondary/80 text-sm uppercase tracking-wider mb-1">Featured</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">Blogs</h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -65,7 +50,7 @@ export default function FeaturedBlogs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group rounded-xl overflow-hidden bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+              className="group rounded-xl overflow-hidden bg-bg-card border border-border-primary hover:border-accent/50 transition-all"
             >
               <div className="aspect-[16/9] overflow-hidden relative">
                 <img
@@ -79,35 +64,35 @@ export default function FeaturedBlogs() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-teal-400 transition-colors">
+                <h3 className="text-xl font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
                   {blog.title}
                 </h3>
-                <p className="text-white/60 text-sm mb-4 line-clamp-2">{blog.description}</p>
+                <p className="text-text-secondary text-sm mb-4 line-clamp-2">{blog.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {blog.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-white/70 text-xs"
+                      className="px-2.5 py-1 rounded-md bg-bg-card border border-border-primary text-text-secondary text-xs"
                     >
                       {tag}
                     </span>
                   ))}
                   {blog.tags.length > 3 && (
-                    <span className="px-2.5 py-1 rounded-md bg-white/5 text-white/50 text-xs">
+                    <span className="px-2.5 py-1 rounded-md bg-bg-card text-text-secondary/50 text-xs">
                       +{blog.tags.length - 3} more
                     </span>
                   )}
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-white/50 text-sm">
+                  <span className="flex items-center gap-2 text-text-secondary text-sm">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     {blog.date}
                   </span>
-                  <a href={blog.url} className="text-teal-400 text-sm font-medium hover:underline flex items-center gap-1">
+                  <Link to={blog.url} className="text-accent text-sm font-medium hover:underline flex items-center gap-1">
                     Read More →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.article>
@@ -115,19 +100,36 @@ export default function FeaturedBlogs() {
           </AnimatePresence>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="inline-flex px-8 py-3 rounded-lg bg-black text-white font-medium hover:bg-white/10 transition-all border border-white/10 cursor-pointer"
+        {!isFullPage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
           >
-            {showAll ? 'Show less' : 'Show all blogs'}
-          </button>
-        </motion.div>
+            <Link
+              to="/blogs"
+              className="inline-flex px-8 py-3 rounded-lg bg-text-primary text-bg-primary font-medium hover:opacity-90 transition-all border border-border-primary cursor-pointer"
+            >
+              Show all blogs
+            </Link>
+          </motion.div>
+        )}
+
+        {isFullPage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center mt-12"
+          >
+            <Link
+              to="/home"
+              className="inline-flex px-8 py-3 rounded-lg bg-text-primary text-bg-primary font-medium hover:opacity-90 transition-all border border-border-primary cursor-pointer"
+            >
+              ← Back to Home
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -6,14 +6,14 @@ const skills = [
   'TypeScript',
   'JavaScript',
   'React',
-  'Next.js',
-  'Node.js',
+  'Tailwind CSS',
   'Python',
   'Flask',
-  'PostgreSQL',
-  'Redis',
-  'AWS',
+  'MySQL',
   'Docker',
+  'Machine Learning',
+  'Deep Learning',
+  'Natural Language Processing',
 ];
 
 export default function AboutMe() {
@@ -24,7 +24,7 @@ export default function AboutMe() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white mb-16"
+          className="text-4xl md:text-5xl font-bold text-text-primary mb-16"
         >
           About Me
         </motion.h2>
@@ -38,20 +38,20 @@ export default function AboutMe() {
           <img
             src={ashikImg}
             alt="Ashikul Islam"
-            className="w-52 h-52 md:w-64 md:h-64 rounded-2xl ring-2 ring-white/10 shrink-0 object-cover"
+            className="w-52 h-52 md:w-64 md:h-64 rounded-2xl ring-2 ring-border-primary shrink-0 object-cover"
           />
 
           <div className="flex-1">
-            <h3 className="text-2xl font-bold text-white mb-4">Ashikul Islam</h3>
-            <p className="text-white/70 leading-relaxed mb-6">
-              I'm a Founding Engineer, Full-Stack & AI Engineer, as well as an Open Source Contributor,
-              who enjoys building scalable products that solve real-world problems. I focus on turning
-              ideas into practical MVPs using modern web technologies and AI-driven solutions.
+            <h3 className="text-2xl font-bold text-text-primary mb-4">Ashikul Islam</h3>
+            <p className="text-text-secondary leading-relaxed mb-6">
+              I am a Web/AI Developer & Researcher who enjoys building scalable products that solve real-world problems. 
+              My work focuses on bridging the gap between advanced AI research and practical web applications. 
+              I specialize in turning complex ideas into functional MVPs using modern technologies and data-driven solutions.
             </p>
-            <p className="text-lg font-semibold text-white mb-3">Skills</p>
-            <div className="flex flex-wrap gap-2">
+            <p className="text-lg font-semibold text-text-primary mb-3">Skills</p>
+            <div className="flex flex-wrap gap-3">
               {skills.map((skill, i) => (
-                <TechTag key={skill} name={skill} />
+                <TechTag key={skill} name={skill} iconOnly={true} />
               ))}
             </div>
           </div>

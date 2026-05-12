@@ -160,7 +160,7 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
-                            className={`bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 md:p-8 w-full relative shadow-2xl overflow-y-auto custom-scrollbar ${isGears ? 'max-w-2xl max-h-[85vh]' : 'max-w-4xl max-h-[90vh]'
+                            className={`bg-bg-primary border border-border-primary rounded-2xl p-6 md:p-8 w-full relative shadow-2xl overflow-y-auto custom-scrollbar ${isGears ? 'max-w-2xl max-h-[85vh]' : 'max-w-4xl max-h-[90vh]'
                                 }`}
                         >
                             <button
@@ -173,7 +173,7 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                 </svg>
                             </button>
 
-                            <h2 className="text-3xl font-bold text-white mb-6 sticky top-0 bg-[#0a0a0a] pb-4 z-0 border-b border-white/5">
+                            <h2 className="text-3xl font-bold text-text-primary mb-6 sticky top-0 bg-bg-primary pb-4 z-0 border-b border-border-primary">
                                 {title}
                             </h2>
 
@@ -181,20 +181,20 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                 {isGears ? (
                                     gears.map((section, idx) => (
                                         <div key={idx}>
-                                            <h3 className="text-xl font-semibold text-teal-400 mb-4">{section.category}</h3>
+                                            <h3 className="text-xl font-semibold text-accent mb-4">{section.category}</h3>
                                             <div className="grid sm:grid-cols-2 gap-4">
                                                 {section.items.map((item, itemIdx) => {
                                                     const content = (
                                                         <>
                                                             <div className="flex justify-between items-start">
-                                                                <p className="font-medium text-white">{item.name}</p>
+                                                                <p className="font-medium text-text-primary">{item.name}</p>
                                                                 {item.link && (
-                                                                    <svg className="w-4 h-4 text-white/30 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <svg className="w-4 h-4 text-text-secondary/30 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                                     </svg>
                                                                 )}
                                                             </div>
-                                                            <p className="text-sm text-white/50">{item.detail}</p>
+                                                            <p className="text-sm text-text-secondary/50">{item.detail}</p>
                                                         </>
                                                     );
 
@@ -205,7 +205,7 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                                                 href={item.link}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
-                                                                className="group bg-white/5 border border-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors block"
+                                                                className="group bg-bg-card border border-border-primary rounded-lg p-4 hover:bg-bg-secondary transition-colors block"
                                                             >
                                                                 {content}
                                                             </a>
@@ -213,7 +213,7 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                                     }
 
                                                     return (
-                                                        <div key={itemIdx} className="bg-white/5 border border-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors">
+                                                        <div key={itemIdx} className="bg-bg-card border border-border-primary rounded-lg p-4 hover:bg-bg-secondary transition-colors">
                                                             {content}
                                                         </div>
                                                     );
@@ -226,11 +226,11 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                     <div className="space-y-10">
                                         {vscodeGuide.map((step, idx) => (
                                             <div key={idx} className="space-y-4">
-                                                <h3 className="text-xl font-semibold text-teal-400 border-l-4 border-teal-400 pl-3">
+                                                <h3 className="text-xl font-semibold text-accent border-l-4 border-accent pl-3">
                                                     {step.title}
                                                 </h3>
                                                 {step.description && (
-                                                    <p className="text-white/70">{step.description}</p>
+                                                    <p className="text-text-secondary">{step.description}</p>
                                                 )}
 
                                                 {step.items && (
@@ -241,17 +241,17 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                                                 href={item.link}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
-                                                                className="flex items-center gap-3 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors group"
+                                                                className="flex items-center gap-3 bg-bg-card p-3 rounded-lg hover:bg-bg-secondary transition-colors group"
                                                             >
                                                                 {/* Use a generic extension icon if specific ones aren't available, or simple SVG */}
-                                                                <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center shrink-0">
-                                                                    <svg className="w-5 h-5 text-white/50 group-hover:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <div className="w-8 h-8 rounded bg-bg-card flex items-center justify-center shrink-0">
+                                                                    <svg className="w-5 h-5 text-text-secondary/50 group-hover:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                                                                     </svg>
                                                                 </div>
                                                                 <div className="min-w-0">
-                                                                    <p className="text-sm font-medium text-white truncate">{item.name}</p>
-                                                                    <p className="text-xs text-white/50 truncate">{item.detail}</p>
+                                                                    <p className="text-sm font-medium text-text-primary truncate">{item.name}</p>
+                                                                    <p className="text-xs text-text-secondary/50 truncate">{item.detail}</p>
                                                                 </div>
                                                             </a>
                                                         ))}
@@ -259,7 +259,7 @@ export default function DevelopmentSetupModal({ isOpen, onClose, type }) {
                                                 )}
 
                                                 {step.content && (
-                                                    <div className="bg-white/5 rounded-lg p-4 font-mono text-sm text-white/80 whitespace-pre-wrap border border-white/10">
+                                                    <div className="bg-bg-card rounded-lg p-4 font-mono text-sm text-text-secondary/80 whitespace-pre-wrap border border-border-primary">
                                                         {step.content}
                                                     </div>
                                                 )}

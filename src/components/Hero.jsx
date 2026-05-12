@@ -1,29 +1,27 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import TechTag from './TechTag';
-import ContactModal from './ContactModal';
 import headImg from '../assets/head.png';
 
 const techTags = [
   'TypeScript',
   'React',
-  'Next.js',
+  'Machine Learning',
+  'Python',
   'MySQL',
 ];
 
 const socialLinks = [
-  { href: '#', icon: 'github', label: 'GitHub' },
-  { href: '#', icon: 'linkedin', label: 'LinkedIn' },
-  { href: '#', icon: 'twitter', label: 'Twitter' },
-  { href: '#', icon: 'mail', label: 'Email' },
+  { href: 'https://github.com/ashikulislam30', icon: 'github', label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/md-ashikul-islam-16542834b/', icon: 'linkedin', label: 'LinkedIn' },
+  { href: 'mailto:ashikulislam401@gmail.com', icon: 'mail', label: 'Email' },
 ];
 
 export default function Hero() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
       <section id="hero" className="min-h-screen flex items-center pt-24 pb-16 px-6">
         <div className="max-w-6xl mx-auto w-full flex flex-col gap-8 ">
           <motion.img
@@ -32,29 +30,29 @@ export default function Hero() {
             transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
             src={headImg}
             alt="Ashikul Islam"
-            className="w-52 h-52 md:w-40 md:h-40 rounded-full shrink-0 ring-4 ring-white/10 object-cover"
+            className="w-52 h-52 md:w-40 md:h-40 rounded-full shrink-0 ring-4 ring-border-primary object-cover"
           />
           <div className="min-w-0">
             <motion.h1
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight text-left"
+              className="text-4xl md:text-5xl font-bold text-text-primary mb-6 leading-tight text-left"
             >
-              Hi, I'm <span className="text-teal-400">Ashik</span> — Full-Stack Developer & AI Engineer.
+              Hi, I'm <span className="text-accent">Ashik</span> — <span className="text-2xl md:text-3xl text-text-secondary font-semibold tracking-tight">Web/AI Developer & Researcher</span>
             </motion.h1>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-lg text-white/60 mb-6 leading-relaxed text-left flex flex-wrap items-center gap-2"
+              className="text-lg text-text-secondary mb-6 leading-relaxed text-left flex flex-wrap items-center gap-2"
             >
-              <span>I build full-stack applications using</span>
+              <span>I specialize in building intelligent web applications using</span>
               {techTags.map((tech) => (
-                <TechTag key={tech} name={tech} />
+                <TechTag key={tech} name={tech} size="small" />
               ))}
-              <span>With a focus on <strong className="text-white">scalable architecture</strong> and <strong className="text-white">clean UI design</strong>.</span>
+              <span>Combining <strong className="text-text-primary">scalable web architecture</strong> with <strong className="text-text-primary">advanced AI research</strong>.</span>
             </motion.div>
 
             <motion.div
@@ -67,7 +65,7 @@ export default function Hero() {
                 href="https://drive.google.com/file/d/1Hs-htLiBLDDvFjDmXe-9mtFczHaF0ENU/view"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/10 border border-white/20 text-white font-medium hover:bg-white/20 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-bg-card border border-border-primary text-text-primary font-medium hover:bg-white/10 transition-all hover:scale-105"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -75,8 +73,8 @@ export default function Hero() {
                 Resume / CV
               </a>
               <button
-                onClick={() => setIsContactOpen(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-medium hover:bg-white/90 transition-all hover:scale-105 cursor-pointer"
+                onClick={() => navigate('/contact')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-text-primary text-bg-primary font-medium hover:opacity-90 transition-all hover:scale-105 cursor-pointer"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -95,7 +93,7 @@ export default function Hero() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-white/50 hover:text-teal-400 transition-colors"
+                  className="text-text-secondary hover:text-accent transition-colors"
                   aria-label={link.label}
                 >
                   {link.icon === 'github' && (

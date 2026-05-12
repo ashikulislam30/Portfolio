@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import headImg from '../assets/head.png';
+
 export default function Header({ darkMode, onToggleTheme, activeSection }) {
   const navItems = [
-    { id: 'work', label: 'Work' },
-    { id: 'blogs', label: 'Blogs' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'work', label: 'Work', path: '/experience' },
+    { id: 'blogs', label: 'Blogs', path: '/blogs' },
+    { id: 'projects', label: 'Projects', path: '/projects' },
   ];
 
   return (
@@ -12,39 +14,36 @@ export default function Header({ darkMode, onToggleTheme, activeSection }) {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/5"
+      className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-border-primary"
     >
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#hero" className="flex items-center gap-2 group">
+        <Link to="/home" className="flex items-center gap-2 group">
           <motion.img
             src={headImg}
             alt="Profile"
-            className="w-10 h-10 rounded-full ring-2 ring-white/10 group-hover:ring-teal-500/50 transition-all"
+            className="w-12 h-12 rounded-lg ring-2 ring-border-primary group-hover:ring-accent/50 transition-all object-cover"
             whileHover={{ scale: 1.05 }}
           />
-          <span className="font-semibold text-white/90 group-hover:text-white transition-colors">
-            Ashikul Islam
-          </span>
-        </a>
+        </Link>
 
         <nav className="flex items-center gap-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={`#${item.id}`}
-              className={`text-sm font-medium transition-colors hover:text-white ${activeSection === item.id
-                ? 'text-teal-400'
-                : 'text-white/60'
+              to={item.path}
+              className={`text-sm font-medium transition-colors hover:text-text-primary ${activeSection === item.id
+                ? 'text-accent'
+                : 'text-text-secondary'
                 }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <motion.button
             onClick={onToggleTheme}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+            className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
             aria-label="Toggle theme"
           >
             {darkMode ? (

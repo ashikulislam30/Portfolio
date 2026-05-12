@@ -38,7 +38,7 @@ export default function DevelopmentSetup() {
         onClose={() => setActiveModal(null)}
         type={activeModal}
       />
-      <section className="py-24 px-6">
+      <section id="setup" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,8 +46,8 @@ export default function DevelopmentSetup() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <p className="text-white/50 text-sm uppercase tracking-wider mb-1">Development</p>
-            <h2 className="text-4xl font-bold text-white">Setup</h2>
+            <p className="text-text-secondary/80 text-sm uppercase tracking-wider mb-1">Development</p>
+            <h2 className="text-4xl font-bold text-text-primary">Setup</h2>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -60,12 +60,12 @@ export default function DevelopmentSetup() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="flex gap-4 p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-all cursor-pointer"
+                className="flex gap-4 p-6 rounded-xl bg-bg-card border border-border-primary hover:border-accent/50 hover:bg-bg-secondary transition-all cursor-pointer"
               >
-                <div className="text-teal-400 shrink-0">{card.icon}</div>
+                <div className="text-accent shrink-0">{card.icon}</div>
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
-                  <p className="text-white/60 text-sm">{card.description}</p>
+                  <h3 className="text-lg font-semibold text-text-primary mb-2">{card.title}</h3>
+                  <p className="text-text-secondary text-sm">{card.description}</p>
                 </div>
               </motion.div>
             ))}

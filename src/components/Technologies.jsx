@@ -16,6 +16,9 @@ const technologies = [
   'Docker',
   'AWS',
   'Postman',
+  'Machine Learning',
+  'Deep Learning',
+  'Natural Language Processing',
 ];
 
 export default function Technologies() {
@@ -26,7 +29,7 @@ export default function Technologies() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-white mb-12"
+          className="text-4xl font-bold text-text-primary mb-12"
         >
           Technologies
         </motion.h2>

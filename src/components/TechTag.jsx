@@ -1,12 +1,14 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   SiTypescript, SiReact, SiNextdotjs, SiNestjs, SiTailwindcss, SiPython,
   SiPrisma, SiPostgresql, SiRedis, SiDocker, SiAmazon, SiPostman,
   SiNodedotjs, SiFlutter, SiFirebase, SiPhp, SiMysql, SiJavascript,
   SiFlask, SiOpenai, SiGooglegemini, SiGoogle, SiC, SiCplusplus,
-  SiExpress, SiMongodb
+  SiExpress, SiMongodb, SiScikitlearn, SiPytorch, SiTensorflow, SiHuggingface,
+  SiCss3
 } from 'react-icons/si';
-import { FaCogs, FaSitemap, FaPuzzlePiece, FaUsers } from 'react-icons/fa';
+import { FaCogs, FaSitemap, FaPuzzlePiece, FaUsers, FaBrain, FaNetworkWired } from 'react-icons/fa';
 
 const techIcons = {
   TypeScript: {
@@ -245,50 +247,145 @@ const techIcons = {
     color: 'text-rose-400',
     hoverBorder: 'hover:border-rose-400',
     hoverShadow: 'hover:shadow-rose-400/20',
-    hoverBg: 'hover:bg-rose-400/10',
     icon: FaUsers,
     url: null
   },
+  'Machine Learning': {
+    color: 'text-orange-400',
+    hoverBorder: 'hover:border-orange-400',
+    hoverShadow: 'hover:shadow-orange-400/20',
+    hoverBg: 'hover:bg-orange-400/10',
+    icon: SiScikitlearn || FaBrain,
+    url: 'https://scikit-learn.org/'
+  },
+  'Deep Learning': {
+    color: 'text-red-400',
+    hoverBorder: 'hover:border-red-400',
+    hoverShadow: 'hover:shadow-red-400/20',
+    hoverBg: 'hover:bg-red-400/10',
+    icon: SiPytorch || SiTensorflow,
+    url: 'https://pytorch.org/'
+  },
+  'Natural Language Processing': {
+    color: 'text-yellow-500',
+    hoverBorder: 'hover:border-yellow-500',
+    hoverShadow: 'hover:shadow-yellow-500/20',
+    hoverBg: 'hover:bg-yellow-500/10',
+    icon: SiHuggingface || FaNetworkWired,
+    url: 'https://huggingface.co/'
+  },
+  'Hugging Face': {
+    color: 'text-yellow-500',
+    hoverBorder: 'hover:border-yellow-500',
+    hoverShadow: 'hover:shadow-yellow-500/20',
+    hoverBg: 'hover:bg-yellow-500/10',
+    icon: SiHuggingface,
+    url: 'https://huggingface.co/'
+  },
+  'LLMs': {
+    color: 'text-purple-400',
+    hoverBorder: 'hover:border-purple-400',
+    hoverShadow: 'hover:shadow-purple-400/20',
+    hoverBg: 'hover:bg-purple-400/10',
+    icon: FaBrain,
+    url: null
+  },
+  'NLP': {
+    color: 'text-blue-400',
+    hoverBorder: 'hover:border-blue-400',
+    hoverShadow: 'hover:shadow-blue-400/20',
+    hoverBg: 'hover:bg-blue-400/10',
+    icon: FaNetworkWired,
+    url: null
+  },
+  'AI Model Training': {
+    color: 'text-orange-400',
+    hoverBorder: 'hover:border-orange-400',
+    hoverShadow: 'hover:shadow-orange-400/20',
+    hoverBg: 'hover:bg-orange-400/10',
+    icon: FaCogs,
+    url: null
+  },
+  'AI Fine-tuning': {
+    color: 'text-teal-400',
+    hoverBorder: 'hover:border-teal-400',
+    hoverShadow: 'hover:shadow-teal-400/20',
+    hoverBg: 'hover:bg-teal-400/10',
+    icon: FaPuzzlePiece,
+    url: null
+  },
+  'CSS': {
+    color: 'text-blue-400',
+    hoverBorder: 'hover:border-blue-400',
+    hoverShadow: 'hover:shadow-blue-400/20',
+    hoverBg: 'hover:bg-blue-400/10',
+    icon: SiCss3,
+    url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+  },
 };
 
-export default function TechTag({ name }) {
+export default function TechTag({ name, iconOnly = false, size = 'normal' }) {
+  const [isHovered, setIsHovered] = useState(false);
   const config = techIcons[name] || {
-    color: 'text-white/80',
-    hoverBorder: 'hover:border-white/50',
-    hoverShadow: 'hover:shadow-white/10',
-    hoverBg: 'hover:bg-white/5',
+    color: 'text-text-primary/80',
+    hoverBorder: 'hover:border-border-primary/50',
+    hoverShadow: 'hover:shadow-text-primary/10',
+    hoverBg: 'hover:bg-bg-card',
     icon: null,
     url: null
   };
 
   const Icon = config.icon;
 
+  const sizeClasses = {
+    small: iconOnly ? 'p-1' : 'px-2 py-1 text-xs',
+    normal: iconOnly ? 'p-2' : 'px-4 py-2 text-sm',
+  };
+
   const linkClass = `
-    inline-flex items-center gap-2.5 px-4 py-2 rounded-xl 
-    bg-white/5 border border-white/10 
+    relative inline-flex items-center gap-1.5 
+    ${sizeClasses[size]} 
+    rounded-lg bg-bg-card border border-border-primary 
     backdrop-blur-sm transition-colors duration-300
     ${config.color} ${config.hoverBorder || ''} ${config.hoverShadow || ''} ${config.hoverBg || ''}
     hover:shadow-lg cursor-pointer
   `;
-
-  // Determine content content
-  const content = (
-    <>
-      {Icon ? <Icon className="text-xl" /> : <span className="text-base font-bold">{name.slice(0, 2)}</span>}
-      <span className="font-medium text-white/90">{name}</span>
-    </>
-  );
 
   return (
     <motion.a
       href={config.url || '#'}
       target={config.url ? "_blank" : undefined}
       rel={config.url ? "noopener noreferrer" : undefined}
-      whileHover={{ scale: 1.05, y: -5 }}
+      whileHover={{ scale: 1.1, y: -5 }}
       whileTap={{ scale: 0.95 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className={linkClass}
     >
-      {content}
+      <AnimatePresence>
+        {isHovered && iconOnly && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: '-50%' }}
+            animate={{ opacity: 1, y: -40, x: '-50%' }}
+            exit={{ opacity: 0, y: 10, x: '-50%' }}
+            className="absolute left-1/2 bottom-full mb-2 px-2 py-1 rounded bg-text-primary text-bg-primary text-[10px] font-bold whitespace-nowrap shadow-xl pointer-events-none z-50"
+          >
+            {name}
+            {/* Tooltip Arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-text-primary" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {Icon ? (
+        <Icon className={size === 'small' ? "text-base" : "text-xl"} />
+      ) : (
+        <span className={`${size === 'small' ? 'text-xs' : 'text-base'} font-bold`}>{name.slice(0, 2)}</span>
+      )}
+      
+      {!iconOnly && (
+        <span className={`font-medium ${size === 'small' ? 'text-text-primary/80' : 'text-text-primary/90'}`}>{name}</span>
+      )}
     </motion.a>
   );
 }

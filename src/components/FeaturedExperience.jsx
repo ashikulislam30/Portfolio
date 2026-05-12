@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import TechTag from './TechTag';
 
 const experiences = [
@@ -41,8 +42,8 @@ const experiences = [
 ];
 
 
-export default function FeaturedExperience() {
-  const [showAll, setShowAll] = useState(false);
+export default function FeaturedExperience({ isFullPage = false }) {
+  const [showAll, setShowAll] = useState(isFullPage);
   const displayedExperiences = showAll ? experiences : experiences.slice(0, 2);
   return (
     <section id="work" className="py-24 px-6">
@@ -54,8 +55,8 @@ export default function FeaturedExperience() {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <p className="text-white/50 text-sm uppercase tracking-wider mb-1">Featured</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Experience</h2>
+          <p className="text-text-secondary/80 text-sm uppercase tracking-wider mb-1">Featured</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">Experience</h2>
         </motion.div>
 
         <div className="space-y-12">
@@ -76,8 +77,8 @@ export default function FeaturedExperience() {
                         {exp.logo}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl font-semibold text-white">{exp.company}</h3>
-                        <p className="text-white/60">{exp.role}</p>
+                        <h3 className="text-xl font-semibold text-text-primary">{exp.company}</h3>
+                        <p className="text-text-secondary">{exp.role}</p>
                         {exp.supervisor && (
                           <p className="text-teal-400/80 text-sm mt-1 font-medium">{exp.supervisor}</p>
                         )}
@@ -88,21 +89,21 @@ export default function FeaturedExperience() {
                             {exp.status}
                           </span>
                         )}
-                        <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/5 text-white/80 border border-white/10">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-bg-card text-text-primary/80 border border-border-primary">
                           {exp.type}
                         </span>
                       </div>
                       <div className="hidden md:block text-right shrink-0">
-                        <p className="text-white/50 text-sm">{exp.dates}</p>
-                        <p className="text-white/50 text-sm">{exp.location}</p>
+                        <p className="text-text-secondary/80 text-sm">{exp.dates}</p>
+                        <p className="text-text-secondary/80 text-sm">{exp.location}</p>
                       </div>
                     </div>
                     <div className="md:pl-16">
-                      <div className="md:hidden text-white/50 text-sm mb-4">
+                      <div className="md:hidden text-text-secondary/80 text-sm mb-4">
                         <p>{exp.dates}</p>
                         <p>{exp.location}</p>
                       </div>
-                      <p className="text-sm font-medium text-white/70 mb-2">Technologies</p>
+                      <p className="text-sm font-medium text-text-primary/70 mb-2">Technologies</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {exp.tech.map((t) => (
                           <TechTag key={t} name={t} />
@@ -110,7 +111,7 @@ export default function FeaturedExperience() {
                       </div>
                       <ul className="space-y-2">
                         {exp.bullets.map((bullet, i) => (
-                          <li key={i} className="text-white/70 text-sm flex gap-2">
+                          <li key={i} className="text-text-primary/70 text-sm flex gap-2">
                             <span className="text-teal-400 mt-1">•</span>
                             {bullet}
                           </li>
@@ -124,19 +125,36 @@ export default function FeaturedExperience() {
           </AnimatePresence>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="inline-flex px-8 py-3 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all cursor-pointer"
+        {!isFullPage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
           >
-            {showAll ? 'Show less' : 'Show all work experiences'}
-          </button>
-        </motion.div>
+            <Link
+              to="/experience"
+              className="inline-flex px-8 py-3 rounded-lg bg-bg-card border border-border-primary text-text-primary font-medium hover:bg-bg-secondary transition-all cursor-pointer"
+            >
+              Show all work experiences
+            </Link>
+          </motion.div>
+        )}
+
+        {isFullPage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center mt-12"
+          >
+            <Link
+              to="/home"
+              className="inline-flex px-8 py-3 rounded-lg bg-bg-card border border-border-primary text-text-primary font-medium hover:bg-bg-secondary transition-all cursor-pointer"
+            >
+              ← Back to Home
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

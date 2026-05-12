@@ -1,62 +1,106 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import FeaturedExperience from './components/FeaturedExperience';
-import Technologies from './components/Technologies';
-import FeaturedProjects from './components/FeaturedProjects';
-import FeaturedBlogs from './components/FeaturedBlogs';
-import AboutMe from './components/AboutMe';
-import GitHubActivity from './components/GitHubActivity';
-import DevelopmentSetup from './components/DevelopmentSetup';
-import QuoteSection from './components/QuoteSection';
-import CTASection from './components/CTASection';
+import Home from './pages/Home';
+import ExperiencePage from './pages/ExperiencePage';
+import BlogsPage from './pages/BlogsPage';
+import ProjectsPage from './pages/ProjectsPage';
+import AboutPage from './pages/AboutPage';
+import SetupPage from './pages/SetupPage';
+import CPBlogPage from './pages/CPBlogPage';
+import AIMLBlogPage from './pages/AIMLBlogPage';
+import ProjectPage from './pages/ProjectPage';
+import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import FloatingActionButton from './components/FloatingActionButton';
+import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
   const [activeSection, setActiveSection] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'work', 'blogs', 'projects', 'about'];
-      const scrollY = window.scrollY;
+    if (!darkMode) {
+      document.documentElement.classList.add('light-mode');
+    } else {
+      document.documentElement.classList.remove('light-mode');
+    }
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop - 150 <= scrollY) {
-          setActiveSection(sections[i]);
-          break;
+  useEffect(() => {
+    const isHomePage = location.pathname === '/' || location.pathname === '/home' || 
+                       ['/experience', '/blogs', '/projects', '/about', '/setup'].includes(location.pathname);
+
+    // Scroll spy logic for the Home page
+    if (isHomePage) {
+      const handleScroll = () => {
+        const sections = ['hero', 'work', 'projects', 'blogs', 'about', 'setup'];
+        const scrollY = window.scrollY;
+
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const el = document.getElementById(sections[i]);
+          if (el && el.offsetTop - 150 <= scrollY) {
+            const section = sections[i];
+            setActiveSection(section);
+            
+            // Update URL without triggering a route change
+            let newPath = section === 'hero' ? '/home' : 
+                          section === 'work' ? '/experience' : 
+                          `/${section}`;
+            
+            if (window.location.pathname !== newPath) {
+              window.history.replaceState(null, '', newPath);
+            }
+            break;
+          }
         }
-      }
-    };
+      };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+      return () => window.removeEventListener('scroll', handleScroll);
+    } else {
+      // Set active section based on path for dedicated pages
+      const path = location.pathname.substring(1);
+      if (path === 'experience') setActiveSection('work');
+      else setActiveSection(path);
+    }
+  }, [location.pathname]);
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-[#0a0a0a]' : 'bg-gray-50'}`}>
+    <div className="min-h-screen transition-colors duration-300 bg-bg-primary text-text-primary">
+      <ScrollToTop />
       <Header
         darkMode={darkMode}
-        onToggleTheme={() => setDarkMode(!darkMode)}
+        onToggleTheme={() => {
+          console.log('Toggling theme to:', !darkMode ? 'light' : 'dark');
+          setDarkMode(!darkMode);
+        }}
         activeSection={activeSection}
       />
       <main>
-        <Hero />
-        <FeaturedExperience />
-        <Technologies />
-        <FeaturedProjects />
-        <FeaturedBlogs />
-        <AboutMe />
-        {/* <GitHubActivity /> */}
-        <DevelopmentSetup />
-        <QuoteSection />
-        <CTASection />
-        <Footer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/setup" element={<SetupPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog/cp-mastery" element={<CPBlogPage />} />
+          <Route path="/blog/ai-ml-guide" element={<AIMLBlogPage />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
+      <Footer />
       <FloatingActionButton />
     </div>
   );

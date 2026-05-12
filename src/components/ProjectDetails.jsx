@@ -48,11 +48,11 @@ export default function ProjectDetails({ project, onBack }) {
                         <span className="px-3 py-1 rounded-full bg-white/10 text-white/90 text-sm font-medium border border-white/10">
                             {project.status || 'Completed'}
                         </span>
+                    <div className="flex flex-wrap gap-3">
                         {project.tech.map((t) => (
-                            <span key={t} className="px-3 py-1 rounded-full bg-white/5 text-white/60 text-sm border border-white/5">
-                                {t}
-                            </span>
+                            <TechTag key={t} name={t} />
                         ))}
+                    </div>
                     </div>
 
                     <div>
