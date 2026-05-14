@@ -6,7 +6,7 @@ import TechTag from './TechTag';
 const experiences = [
   {
     id: 1,
-    company: 'FAWZ BIZ Enterprise - Working with NSI',
+    company: 'FAWZ BIZ Enterprise',
     logo: 'NSI',
     role: 'Junior Full-Stack Developer & AI Engineer Intern (NSI Project)',
     status: null,
