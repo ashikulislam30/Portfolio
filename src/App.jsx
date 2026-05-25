@@ -6,7 +6,6 @@ import ExperiencePage from './pages/ExperiencePage';
 import BlogsPage from './pages/BlogsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import AboutPage from './pages/AboutPage';
-import SetupPage from './pages/SetupPage';
 import CPBlogPage from './pages/CPBlogPage';
 import AIMLBlogPage from './pages/AIMLBlogPage';
 import ProjectPage from './pages/ProjectPage';
@@ -35,12 +34,12 @@ function App() {
 
   useEffect(() => {
     const isHomePage = location.pathname === '/' || location.pathname === '/home' || 
-                       ['/experience', '/blogs', '/projects', '/about', '/setup'].includes(location.pathname);
+               ['/experience', '/blogs', '/projects', '/about'].includes(location.pathname);
 
     // Scroll spy logic for the Home page
     if (isHomePage) {
       const handleScroll = () => {
-        const sections = ['hero', 'work', 'projects', 'blogs', 'about', 'setup'];
+        const sections = ['hero', 'work', 'projects', 'blogs', 'about'];
         const scrollY = window.scrollY;
 
         for (let i = sections.length - 1; i >= 0; i--) {
@@ -92,7 +91,6 @@ function App() {
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/setup" element={<SetupPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog/cp-mastery" element={<CPBlogPage />} />
           <Route path="/blog/ai-ml-guide" element={<AIMLBlogPage />} />

@@ -4,7 +4,6 @@ import Technologies from './../components/Technologies';
 import FeaturedProjects from './../components/FeaturedProjects';
 import FeaturedBlogs from './../components/FeaturedBlogs';
 import AboutMe from './../components/AboutMe';
-import DevelopmentSetup from './../components/DevelopmentSetup';
 import QuoteSection from './../components/QuoteSection';
 import CTASection from './../components/CTASection';
 
@@ -17,7 +16,6 @@ export default function Home() {
       <FeaturedProjects />
       <FeaturedBlogs />
       <AboutMe />
-      <DevelopmentSetup />
       <QuoteSection />
       <CTASection />
     </>

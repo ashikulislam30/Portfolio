@@ -7,8 +7,6 @@ export default function Footer() {
     { label: 'Work', path: '/experience' },
     { label: 'Projects', path: '/projects' },
     { label: 'Blog', path: '/blogs' },
-    
-    { label: 'Setup', path: '/setup' },
     { label: 'Contact', path: '/contact' },
   ];
 
