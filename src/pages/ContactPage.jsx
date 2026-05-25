@@ -10,7 +10,9 @@ export default function ContactPage() {
         message: ''
     });
     const [status, setStatus] = useState('idle'); // idle, sending, success, error
-    const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]); // Default to first (GB)
+    const [selectedCountry, setSelectedCountry] = useState(
+        countryCodes.find((country) => country.code === 'BD') || countryCodes[0]
+    );
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     useEffect(() => {
@@ -171,9 +173,11 @@ ${formData.message}
                                             >
                                                 <img src={selectedCountry.flagUrl} alt={selectedCountry.name} className="w-6 h-4 mr-2 object-cover rounded-sm" />
                                                 <span className="text-sm text-white/90 font-medium">{selectedCountry.dial_code}</span>
-                                                <svg className={`w-4 h-4 ml-1 text-white/30 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                </svg>
+                                                <span className="inline-flex items-center justify-center ml-1 text-white">
+                                                    <svg className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </span>
                                             </button>
 
                                             {/* Custom Dropdown Menu */}

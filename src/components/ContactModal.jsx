@@ -10,7 +10,9 @@ export default function ContactModal({ isOpen, onClose }) {
         message: ''
     });
     const [status, setStatus] = useState('idle'); // idle, sending, success, error
-    const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]); // Default to first (GB)
+    const [selectedCountry, setSelectedCountry] = useState(
+        countryCodes.find((country) => country.code === 'BD') || countryCodes[0]
+    );
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -139,19 +141,21 @@ ${formData.message}
                                             <div className="flex">
                                                 <div className="relative">
                                                     {/* Custom Display */}
-                                                    <div className="absolute inset-0 flex items-center px-3 pointer-events-none text-white border-r border-white/10 bg-white/5 rounded-l-lg">
+                                                    <div className="absolute inset-0 z-10 flex items-center px-3 pointer-events-none text-white border-r border-white/10 bg-white/5 rounded-l-lg">
                                                         <img src={selectedCountry.flagUrl} alt={selectedCountry.name} className="w-6 h-4 mr-2 object-cover rounded-sm" />
                                                         <span className="text-sm text-white/90">{selectedCountry.dial_code}</span>
-                                                        <svg className="w-4 h-4 ml-2 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                                        </svg>
+                                                        <span className="inline-flex items-center justify-center ml-2 text-white">
+                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                            </svg>
+                                                        </span>
                                                     </div>
 
                                                     {/* Invisible Native Select for Functionality */}
                                                     <select
                                                         value={selectedCountry.code}
                                                         onChange={handleCountryChange}
-                                                        className="opacity-0 w-[110px] h-full cursor-pointer"
+                                                        className="opacity-0 w-[120px] h-full cursor-pointer relative z-0"
                                                     >
                                                         {countryCodes.map((country) => (
                                                             <option key={country.code} value={country.code} className="text-black">
