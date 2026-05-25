@@ -6,7 +6,7 @@ import {
   SiNodedotjs, SiFlutter, SiFirebase, SiPhp, SiMysql, SiJavascript,
   SiFlask, SiOpenai, SiGooglegemini, SiGoogle, SiC, SiCplusplus,
   SiExpress, SiMongodb, SiScikitlearn, SiPytorch, SiTensorflow, SiHuggingface,
-  SiCss3
+  SiCss3, SiHtml5
 } from 'react-icons/si';
 import { FaCogs, FaSitemap, FaPuzzlePiece, FaUsers, FaBrain, FaNetworkWired } from 'react-icons/fa';
 
@@ -321,6 +321,14 @@ const techIcons = {
     hoverBg: 'hover:bg-blue-400/10',
     icon: SiCss3,
     url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+  },
+  'HTML': {
+    color: 'text-orange-500',
+    hoverBorder: 'hover:border-orange-500',
+    hoverShadow: 'hover:shadow-orange-500/20',
+    hoverBg: 'hover:bg-orange-500/10',
+    icon: SiHtml5,
+    url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
   },
 };
 

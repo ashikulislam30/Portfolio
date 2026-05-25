@@ -1,6 +1,7 @@
 import project1 from '../assets/projects/project1.png';
 import project2 from '../assets/projects/project2.png';
 import project3 from '../assets/projects/project3.png';
+import project4 from '../assets/projects/project4.png';
 
 export const projects = [
   {
@@ -30,13 +31,26 @@ export const projects = [
     team: 'Team of 3',
   },
   {
-    id: 'personal-messenger',
-    title: 'Nexus - Secure Personal Messenger',
-    description: 'A real-time messaging platform designed for secure communication, featuring instant message delivery, user presence tracking, and a modern chat interface.',
+    id: 'pdf-to-speech',
+    title: 'PDF to Speech',
+    description: 'A PDF listener that converts documents into spoken audio using HTML, CSS, JavaScript, and Hugging Face models.',
     image: project3,
+    liveUrl: 'https://pdftospeech.ashikulislam.me/',
+    githubUrl: 'https://github.com/ashikulislam30/Personal_Messenger',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Hugging Face'],
+    status: 'In project to improving',
+    timeline: 'Ongoing',
+    role: 'Full Stack Developer',
+    team: 'Solo',
+  },
+  {
+    id: 'personal-messenger',
+    title: 'Personal Messenger',
+    description: 'A real-time messaging platform designed for secure communication, featuring instant message delivery, user presence tracking, and a modern chat interface.',
+    image: project4,
     liveUrl: 'https://messenger.ashikulislam.me/',
     githubUrl: 'https://github.com/ashikulislam30/Personal_Messenger',
-    tech: ['React', 'JavaScript', 'Tailwind CSS', 'MySQL'],
+    tech: ['React', 'Tailwind CSS', 'JavaScript', 'MySQL'],
     status: 'In Progress',
     timeline: 'Ongoing',
     role: 'Full Stack Developer',
