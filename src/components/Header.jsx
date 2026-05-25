@@ -7,6 +7,7 @@ export default function Header({ darkMode, onToggleTheme, activeSection }) {
     { id: 'work', label: 'Work', path: '/experience' },
     { id: 'blogs', label: 'Blogs', path: '/blogs' },
     { id: 'projects', label: 'Projects', path: '/projects' },
+    { id: 'contact', label: 'Contact', path: '/contact' },
   ];
 
   return (
