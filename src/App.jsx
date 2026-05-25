@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SiReact } from 'react-icons/si';
-import { FaCube } from 'react-icons/fa';
+import { FaBrain } from 'react-icons/fa';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -114,7 +114,7 @@ function App() {
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                     className="text-cyan-300 drop-shadow-[0_0_12px_rgba(34,211,238,0.35)]"
                   >
-                    <FaCube className="w-7 h-7 md:w-9 md:h-9" />
+                    <FaBrain className="w-7 h-7 md:w-9 md:h-9" />
                   </motion.div>
                   <span className="text-xs md:text-sm tracking-[0.2em] uppercase text-white/70">AI</span>
                 </div>
