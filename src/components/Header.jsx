@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import headImg from '../assets/head.png';
 
 export default function Header({ darkMode, onToggleTheme, activeSection }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = [
     { id: 'work', label: 'Work', path: '/experience' },
     { id: 'blogs', label: 'Blogs', path: '/blogs' },
@@ -27,7 +29,7 @@ export default function Header({ darkMode, onToggleTheme, activeSection }) {
           />
         </Link>
 
-        <nav className="flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <Link
               key={item.id}
@@ -40,6 +42,9 @@ export default function Header({ darkMode, onToggleTheme, activeSection }) {
               {item.label}
             </Link>
           ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
           <motion.button
             onClick={onToggleTheme}
             whileHover={{ scale: 1.1 }}
@@ -57,8 +62,49 @@ export default function Header({ darkMode, onToggleTheme, activeSection }) {
               </svg>
             )}
           </motion.button>
-        </nav>
+
+          <motion.button
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors md:hidden"
+            aria-label="Toggle navigation"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-nav"
+          >
+            {isMobileMenuOpen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </motion.button>
+        </div>
       </div>
+
+      <nav
+        id="mobile-nav"
+        className={`md:hidden border-t border-border-primary bg-bg-primary/95 backdrop-blur-xl ${
+          isMobileMenuOpen ? 'block' : 'hidden'
+        }`}
+      >
+        <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={item.path}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-sm font-medium transition-colors hover:text-text-primary ${
+                activeSection === item.id ? 'text-accent' : 'text-text-secondary'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </motion.header>
   );
 }
